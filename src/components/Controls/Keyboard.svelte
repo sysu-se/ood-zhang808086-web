@@ -1,14 +1,8 @@
 <script>
-	//import { userGrid } from '@sudoku/stores/grid';
-	import {createEventDispatcher} from 'svelte';
-	import { cursor } from '@sudoku/stores/cursor';
-	import { notes } from '@sudoku/stores/notes';
-	//import { candidates } from '@sudoku/stores/candidates';
-
-	// TODO: Improve keyboardDisabled
-	import { keyboardDisabled } from '@sudoku/stores/keyboard';
-
-	//const dispatch = createEventDispatcher();
+	import { createEventDispatcher } from 'svelte';
+	import { cursor } from '../../domain/stores/cursor.js';
+	import { notes } from '../../domain/stores/notes.js';
+	import { keyboardDisabled } from '../../domain/stores/keyboard.js';
 
 	export let onAction = () => {};
 
@@ -20,11 +14,11 @@
 			const value = num === 0 ? null : num;
 
 			onAction('guess', { row, col, value });
+		}
 	}
-}
 
-function handleKey(e) {
-       
+	function handleKey(e) {
+
         if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
             e.preventDefault();
             if (e.shiftKey) {
